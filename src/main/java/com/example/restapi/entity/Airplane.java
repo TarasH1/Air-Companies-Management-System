@@ -3,6 +3,7 @@ package com.example.restapi.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name = "airplane")
 public class Airplane {
@@ -18,29 +19,24 @@ public class Airplane {
     private String factorySerialNumber;
 
     @Column
-    private String airCompanyId;
+    private Long numberOfFlights;
 
     @Column
-    private String numberOfFlights;
+    private int flightDistance;
 
     @Column
-    private String flightDistance;
-
-    @Column
-    private String fuelCapacity;
+    private int fuelCapacity;
 
     @Column
     private String type;
 
     @Column
-    private String createdAt;
+    private Date createdAt;
 
-/*
+    @ManyToOne
     @JoinColumn
     @JsonIgnore
-    @OneToOne(mappedBy = "airplane")
     private AirCompany airCompany;
-*/
 
     public Long getId() {
         return id;
@@ -62,35 +58,27 @@ public class Airplane {
         this.factorySerialNumber = factorySerialNumber;
     }
 
-/*    public String getAirCompanyId() {
-        return airCompanyId;
-    }
-
-    public void setAirCompanyId(String airCompanyId) {
-        this.airCompanyId = airCompanyId;
-    }*/
-
-    public String getNumberOfFlights() {
+    public Long getNumberOfFlights() {
         return numberOfFlights;
     }
 
-    public void setNumberOfFlights(String numberOfFlights) {
+    public void setNumberOfFlights(Long numberOfFlights) {
         this.numberOfFlights = numberOfFlights;
     }
 
-    public String getFlightDistance() {
+    public int getFlightDistance() {
         return flightDistance;
     }
 
-    public void setFlightDistance(String flightDistance) {
+    public void setFlightDistance(int flightDistance) {
         this.flightDistance = flightDistance;
     }
 
-    public String getFuelCapacity() {
+    public int getFuelCapacity() {
         return fuelCapacity;
     }
 
-    public void setFuelCapacity(String fuelCapacity) {
+    public void setFuelCapacity(int fuelCapacity) {
         this.fuelCapacity = fuelCapacity;
     }
 
@@ -102,11 +90,19 @@ public class Airplane {
         this.type = type;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public AirCompany getAirCompany() {
+        return airCompany;
+    }
+
+    public void setAirCompany(AirCompany airCompany) {
+        this.airCompany = airCompany;
     }
 }
