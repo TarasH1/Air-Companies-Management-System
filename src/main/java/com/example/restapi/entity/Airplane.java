@@ -35,10 +35,12 @@ public class Airplane {
     @Column
     private String createdAt;
 
+/*
     @JoinColumn
     @JsonIgnore
     @OneToOne(mappedBy = "airplane")
     private AirCompany airCompany;
+*/
 
     public Long getId() {
         return id;
@@ -60,13 +62,13 @@ public class Airplane {
         this.factorySerialNumber = factorySerialNumber;
     }
 
-    public String getAirCompanyId() {
+/*    public String getAirCompanyId() {
         return airCompanyId;
     }
 
     public void setAirCompanyId(String airCompanyId) {
         this.airCompanyId = airCompanyId;
-    }
+    }*/
 
     public String getNumberOfFlights() {
         return numberOfFlights;
