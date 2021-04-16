@@ -5,6 +5,7 @@ import java.sql.Time;
 
 @Entity(name = "flight")
 public class Flight {
+
     public enum FlightStatus {
         ACTIVE,
         COMPLETED,
@@ -40,6 +41,14 @@ public class Flight {
 
     @Column
     private Time createdAt;
+
+    @ManyToOne
+    @JoinColumn
+    private AirCompany airCompany;
+
+    @ManyToOne
+    @JoinColumn
+    private Airplane airplane;
 
     public Long getId() {
         return id;
@@ -124,4 +133,20 @@ public class Flight {
     public boolean isPending() {
         return this.flightStatus.equals(FlightStatus.PENDING);
     }
+    public AirCompany getAirCompany() {
+        return airCompany;
+    }
+
+    public void setAirCompany(AirCompany airCompany) {
+        this.airCompany = airCompany;
+    }
+
+    public Airplane getAirplane() {
+        return airplane;
+    }
+
+    public void setAirplane(Airplane airplane) {
+        this.airplane = airplane;
+    }
+
 }

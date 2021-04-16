@@ -1,12 +1,11 @@
 package com.example.restapi.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "airplane")
 public class Airplane {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -35,7 +34,6 @@ public class Airplane {
 
     @ManyToOne
     @JoinColumn
-    @JsonIgnore
     private AirCompany airCompany;
 
     public Long getId() {

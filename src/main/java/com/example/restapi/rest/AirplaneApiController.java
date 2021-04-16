@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class AirplaneApiController {
     @Autowired
     private AirplaneRepository airplaneRepository;
 
-    @GetMapping
+    @GetMapping(value = "/all", consumes = "application/json", produces = "application/json")
     public List<Airplane> findAllAirplanes() {
         return (List<Airplane>) airplaneRepository.findAll();
     }
@@ -32,5 +33,28 @@ public class AirplaneApiController {
     @PostMapping
     public Airplane saveAirplane(@Validated @RequestBody Airplane airplane) {
         return airplaneRepository.save(airplane);
+    }
+
+    @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
+    public Airplane update(@PathVariable Long id, @RequestParam String airplaneName, String factorySerialNumber,
+                           Long numberOfFlights, int flightDistance, int fuelCapacity, String type, Date createdAt) {
+        Airplane airplane = airplaneRepository.findById(id).get();
+
+        airplane.setAirplaneName(airplaneName);
+        airplane.setFactorySerialNumber(factorySerialNumber);
+        airplane.setNumberOfFlights(numberOfFlights);
+        airplane.setFlightDistance(flightDistance);
+        airplane.setFuelCapacity(fuelCapacity);
+        airplane.setType(type);
+        airplane.setCreatedAt(createdAt);
+
+        airplaneRepository.save(airplane);
+
+        return airplane;
+    }
+
+    @DeleteMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
+    public void deleteById(@PathVariable Long id) {
+        airplaneRepository.deleteById(id);
     }
 }
