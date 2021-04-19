@@ -18,6 +18,8 @@ public class AirCompanyApiController {
 
     @Autowired
     private AirCompanyRepository airCompanyRepository;
+
+    @Autowired
     private AirplaneRepository airplaneRepository;
 
     @GetMapping(value = "/all", consumes = "application/json", produces = "application/json")
@@ -50,15 +52,14 @@ public class AirCompanyApiController {
         return airCompany;
     }
 
-    @PostMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
-    public AirCompany reassignPlane(@PathVariable Long airCompanyId, @RequestParam Long airplaneId) {
+    @PutMapping(value = "/move", consumes = "application/json", produces = "application/json")
+    public AirCompany reassignAirplane(@RequestParam Long airCompanyId, Long airplaneId) {
         AirCompany airCompany = airCompanyRepository.findById(airCompanyId).get();
         Airplane airplane = airplaneRepository.findById(airplaneId).get();
 
-        airCompany.addAirplane(airplane);
         airplane.setAirCompany(airCompany);
 
-        airCompanyRepository.save(airCompany);
+        airplaneRepository.save(airplane);
         return airCompany;
     }
 

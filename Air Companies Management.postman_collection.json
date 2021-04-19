@@ -1,0 +1,363 @@
+{
+	"info": {
+		"_postman_id": "d27fcaca-bda5-47d4-8cf4-f46fbc05bc53",
+		"name": "Air Companies Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All Airplanes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/airplane/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"airplane",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Airplane By Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/airplane/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"airplane",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move Airplanes Between Companies",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/aircompany/move?airCompanyId=1&airplaneId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"aircompany",
+						"move"
+					],
+					"query": [
+						{
+							"key": "airCompanyId",
+							"value": "1"
+						},
+						{
+							"key": "airplaneId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Airplane",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"airplaneName\": \"Jst\" }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/airplane",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"airplane"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Aircompanies flights By Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/flight/status?status=ACTIVE&name=AirFly",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flight",
+						"status"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "ACTIVE"
+						},
+						{
+							"key": "name",
+							"value": "AirFly"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Active Flights",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/flight/active",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flight",
+						"active"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Airplane And Assign",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/airplane/add?airCompanyId=2&name=NewPlane&serialNumber=BFG9000&flightDistance=900&fuelCapacity=500&numberOfFlights=5&type=Passenger&createdAt=2021-02-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"airplane",
+						"add"
+					],
+					"query": [
+						{
+							"key": "airCompanyId",
+							"value": "2"
+						},
+						{
+							"key": "name",
+							"value": "NewPlane"
+						},
+						{
+							"key": "serialNumber",
+							"value": "BFG9000"
+						},
+						{
+							"key": "flightDistance",
+							"value": "900"
+						},
+						{
+							"key": "fuelCapacity",
+							"value": "500"
+						},
+						{
+							"key": "numberOfFlights",
+							"value": "5"
+						},
+						{
+							"key": "type",
+							"value": "Passenger"
+						},
+						{
+							"key": "createdAt",
+							"value": "2021-02-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New Flight (PENDING)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"airCompanyId\": 1,\"airplaneId\": 1,\"createdAt\": \"2021-04-16T08:22:12\",\"delayStartedAt\": \"2021-04-16T09:22:12\",\"endedAt\": \"2021-04-16T13:22:12\",\"estimatedFlightTime\": \"05:00:00\",\"departureCountry\": \"Spain\",\"destinationCountry\": \"Ukraine\",\"distance\": \"4000\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/flight/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flight",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Flight Status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/flight/change_status?flightId=1&status=DELAYED&time=2021-04-16T19:22:01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flight",
+						"change_status"
+					],
+					"query": [
+						{
+							"key": "flightId",
+							"value": "1"
+						},
+						{
+							"key": "status",
+							"value": "DELAYED"
+						},
+						{
+							"key": "time",
+							"value": "2021-04-16T19:22:01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Completed Flights",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/flight/completed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"flight",
+						"completed"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

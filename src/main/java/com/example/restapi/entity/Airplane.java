@@ -1,7 +1,7 @@
 package com.example.restapi.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity(name = "airplane")
 public class Airplane {
@@ -30,7 +30,7 @@ public class Airplane {
     private String type;
 
     @Column
-    private Date createdAt;
+    private LocalDate createdAt;
 
     @ManyToOne
     @JoinColumn
@@ -88,11 +88,11 @@ public class Airplane {
         this.type = type;
     }
 
-    public Date getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 

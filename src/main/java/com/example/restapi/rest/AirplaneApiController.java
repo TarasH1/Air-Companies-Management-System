@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +19,8 @@ public class AirplaneApiController {
 
     @Autowired
     private AirplaneRepository airplaneRepository;
+
+    @Autowired
     private AirCompanyRepository airCompanyRepository;
 
     @GetMapping(value = "/all", consumes = "application/json", produces = "application/json")
@@ -40,7 +42,7 @@ public class AirplaneApiController {
 
     @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
     public Airplane update(@PathVariable Long id, @RequestParam String airplaneName, String factorySerialNumber,
-                           Long numberOfFlights, int flightDistance, int fuelCapacity, String type, Date createdAt) {
+                           Long numberOfFlights, int flightDistance, int fuelCapacity, String type, LocalDate createdAt) {
         Airplane airplane = airplaneRepository.findById(id).get();
 
         airplane.setAirplaneName(airplaneName);
@@ -56,12 +58,24 @@ public class AirplaneApiController {
         return airplane;
     }
     @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
-    public Airplane addAirplaneAndAssign(@Validated @RequestBody Airplane airplane, AirCompany airCompany) {
-        airCompany.addAirplane(airplane);
-        airplane.setAirCompany(airCompany);
-        //TODO: assign to airAompany
+    public Airplane addAirplaneAndAssign(@RequestParam Long airCompanyId, String name, String serialNumber,
+                                         Integer flightDistance, Integer fuelCapacity, Long numberOfFlights, String type) {
 
-        return airplaneRepository.save(airplane);
+        AirCompany airCompany = airCompanyRepository.findById(airCompanyId).get();
+
+        Airplane airplane = new Airplane();
+
+        airplane.setAirCompany(airCompany);
+        airplane.setAirplaneName(name);
+        airplane.setFactorySerialNumber(serialNumber);
+        airplane.setFlightDistance(flightDistance);
+        airplane.setFuelCapacity(fuelCapacity);
+        airplane.setNumberOfFlights(numberOfFlights);
+        airplane.setType(type);
+
+        airplaneRepository.save(airplane);
+
+        return airplane;
     }
 
 

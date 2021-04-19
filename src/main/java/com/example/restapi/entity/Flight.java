@@ -1,7 +1,8 @@
 package com.example.restapi.entity;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity(name = "flight")
 public class Flight {
@@ -31,16 +32,16 @@ public class Flight {
     private int distance;
 
     @Column
-    private Time estimatedFlightTime;
+    private LocalTime estimatedFlightTime;
 
     @Column
-    private Time endedAt;
+    private LocalDateTime endedAt;
 
     @Column
-    private Time delayStartedAt;
+    private LocalDateTime delayStartedAt;
 
     @Column
-    private Time createdAt;
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn
@@ -86,35 +87,35 @@ public class Flight {
         this.distance = distance;
     }
 
-    public Time getEstimatedFlightTime() {
+    public LocalTime getEstimatedFlightTime() {
         return estimatedFlightTime;
     }
 
-    public void setEstimatedFlightTime(Time estimatedFlightTime) {
+    public void setEstimatedFlightTime(LocalTime estimatedFlightTime) {
         this.estimatedFlightTime = estimatedFlightTime;
     }
 
-    public Time getEndedAt() {
+    public LocalDateTime getEndedAt() {
         return endedAt;
     }
 
-    public void setEndedAt(Time endedAt) {
+    public void setEndedAt(LocalDateTime endedAt) {
         this.endedAt = endedAt;
     }
 
-    public Time getDelayStartedAt() {
+    public LocalDateTime getDelayStartedAt() {
         return delayStartedAt;
     }
 
-    public void setDelayStartedAt(Time delayStartedAt) {
+    public void setDelayStartedAt(LocalDateTime delayStartedAt) {
         this.delayStartedAt = delayStartedAt;
     }
 
-    public Time getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Time createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
