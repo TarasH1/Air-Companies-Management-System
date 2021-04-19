@@ -1,6 +1,8 @@
 package com.example.restapi.rest;
 
+import com.example.restapi.entity.AirCompany;
 import com.example.restapi.entity.Airplane;
+import com.example.restapi.repository.AirCompanyRepository;
 import com.example.restapi.repository.AirplaneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ public class AirplaneApiController {
 
     @Autowired
     private AirplaneRepository airplaneRepository;
+    private AirCompanyRepository airCompanyRepository;
 
     @GetMapping(value = "/all", consumes = "application/json", produces = "application/json")
     public List<Airplane> findAllAirplanes() {
@@ -52,6 +55,15 @@ public class AirplaneApiController {
 
         return airplane;
     }
+    @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
+    public Airplane addAirplaneAndAssign(@Validated @RequestBody Airplane airplane, AirCompany airCompany) {
+        airCompany.addAirplane(airplane);
+        airplane.setAirCompany(airCompany);
+        //TODO: assign to airAompany
+
+        return airplaneRepository.save(airplane);
+    }
+
 
     @DeleteMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
     public void deleteById(@PathVariable Long id) {

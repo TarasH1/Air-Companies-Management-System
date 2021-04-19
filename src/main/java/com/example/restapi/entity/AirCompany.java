@@ -22,6 +22,7 @@ public class AirCompany {
     private String foundedAt;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn
     private List<Airplane> airplanes;
 
     public Long getId() {

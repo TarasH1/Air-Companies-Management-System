@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface AirCompanyRepository extends CrudRepository<AirCompany, Long> {
 
-    List<AirCompany> findAllByAirCompanyName(String airCompanyName);
+    List<AirCompany> findByAirCompanyName(String airCompanyName);
 
     @Transactional
     void deleteByAirCompanyName(String airCompanyName);
